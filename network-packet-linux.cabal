@@ -1,0 +1,55 @@
+cabal-version:       2.4
+name:                network-packet-linux
+version:             0.1.0.0
+license-file:        LICENSE
+maintainer:          Mads Rolsdorph
+category:            Network
+build-type:          Configure
+homepage:            https://github.com/rolsdorph/network-packet-linux
+bug-reports:         https://github.com/rolsdorph/network-packet-linux/issues
+
+library
+  exposed-modules:     Network.Socket.Linux
+  other-modules:       Network.Socket.Linux.Types
+  other-extensions:    PatternSynonyms
+  build-depends:       base ^>=4.13.0.0, network, vendored-network
+  include-dirs:        include
+  includes:            PacketLinuxConfig.h
+  build-tool-depends:  hsc2hs:hsc2hs
+  default-language:    Haskell2010
+
+-- These tests require CAP_NET_RAW and must therefore run as root, hence
+-- the separate test-suite
+test-suite socketspec
+  hs-source-dirs: test-socket
+  main-is: Spec.hs
+  other-modules: Network.Socket.Linux.LinuxSpec
+  type: exitcode-stdio-1.0
+  ghc-options: -Wall
+  build-tool-depends: hspec-discover:hspec-discover
+  build-depends:
+    base,
+    bytestring,
+    HUnit,
+    network,
+    vendored-network-test,
+    network-packet-linux,
+    hspec,
+    QuickCheck
+
+test-suite typespec
+  hs-source-dirs: test-types
+  main-is: Spec.hs
+  other-modules: Network.Socket.Linux.TypeSpec
+  type: exitcode-stdio-1.0
+  ghc-options: -Wall
+  build-tool-depends: hspec-discover:hspec-discover
+  build-depends:
+    base,
+    bytestring,
+    HUnit,
+    network,
+    vendored-network-test,
+    network-packet-linux,
+    hspec,
+    QuickCheck

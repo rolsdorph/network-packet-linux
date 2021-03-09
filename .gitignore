@@ -1,0 +1,9 @@
+autom4te.cache
+cabal.project.local
+configure
+config.log
+config.mk
+config.status
+*~
+dist-newstyle
+include/PacketLinuxConfig.h.in
