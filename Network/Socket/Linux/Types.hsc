@@ -79,7 +79,7 @@ pattern GeneralProtocolId n = ProtocolId n
 {-# COMPLETE GeneralProtocolId #-}
 #endif
 
--- | Convert 'CUshort' to 'ProtocolId'.
+-- | Convert 'CUShort' to 'ProtocolId'.
 unpackProtocolId :: CUShort -> ProtocolId
 unpackProtocolId = ProtocolId
 {-# INLINE unpackProtocolId #-}
@@ -708,7 +708,8 @@ data SockAddrLl = SockAddrLl { sllFamily :: Family
                              , sllIfIndex :: SllIfIndex
                              , sllHaType :: SllHaType
                              , sllPktType :: PacketType
-                             , physicalAddress :: PhysicalAddress }
+                             , physicalAddress :: PhysicalAddress -- ^ Get the 'PhysicalAddress' corresponding to the the @sll_halen@ and @sll_addr@ fields
+                             }
 
 -- | Create a SockAddrLl for binding a packet socket to an interface.
 mkBindSockAddrLl :: Family -> ProtocolId -> Int -> SockAddrLl
