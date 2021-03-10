@@ -1,12 +1,14 @@
 cabal-version:       2.4
 name:                network-packet-linux
 version:             0.1.0.0
+build-type:          Configure
+license:             BSD-3-Clause
 license-file:        LICENSE
 maintainer:          Mads Rolsdorph
-category:            Network
-build-type:          Configure
+stability:           alpha
 homepage:            https://github.com/rolsdorph/network-packet-linux
 bug-reports:         https://github.com/rolsdorph/network-packet-linux/issues
+category:            Network
 
 library
   exposed-modules:     Network.Socket.Linux
