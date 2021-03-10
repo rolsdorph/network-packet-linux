@@ -9,6 +9,14 @@ stability:           alpha
 homepage:            https://github.com/rolsdorph/network-packet-linux
 bug-reports:         https://github.com/rolsdorph/network-packet-linux/issues
 category:            Network
+extra-source-files:  cabal.project
+                     configure config.status configure.ac
+                     include/LinuxDef.h include/PacketLinuxConfig.h.in
+                     vendor/network/Network/Socket/ReadShow.hs
+                     vendor/network/tests/Network/Test/Common.hs
+                     vendor/network/LICENSE
+                     vendored-network/Setup.hs vendored-network/vendored-network.cabal
+                     vendored-network-test/Setup.hs vendored-network-test/vendored-network-test.cabal
 
 library
   exposed-modules:     Network.Socket.Linux
