@@ -15,6 +15,7 @@ module Network.Socket.Linux (
                 ,ETH_P_CONTROL,ETH_P_IRDA,ETH_P_ECONET,ETH_P_HDLC,ETH_P_ARCNET
                 ,ETH_P_DSA,ETH_P_TRAILER,ETH_P_PHONET,ETH_P_IEEE802154)
     , isSupportedProtocolId
+    , toProtocolNumber
 
     -- * PacketType
     , PacketType(GeneralPacketType, UnsupportedPacketType

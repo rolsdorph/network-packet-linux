@@ -39,7 +39,7 @@ nonExistingIfIndex possibleIndex = do
     Nothing -> return possibleIndex
 
 createSocket :: IO Socket
-createSocket = socket AF_PACKET Raw 0x300
+createSocket = socket AF_PACKET Raw (toProtocolNumber ETH_P_ALL)
 
 prepareTest :: IO (Socket, Int, Int)
 prepareTest = do
@@ -122,10 +122,10 @@ packetWithClose ::
 packetWithClose ifIndex serverAct =
    ClientServer
     { clientSetup = do
-        sock <- socket AF_PACKET Datagram 0x300
+        sock <- socket AF_PACKET Datagram (toProtocolNumber ETH_P_ALL)
         return sock,
       serverSetup = do
-        sock <- socket AF_PACKET Datagram 0x300
+        sock <- socket AF_PACKET Datagram (toProtocolNumber ETH_P_ALL)
         Address.bind sock (mkBindSockAddrLl AF_PACKET ETH_P_ALL ifIndex)
         return sock,
       serverAction = serverAct,

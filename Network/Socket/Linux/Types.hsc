@@ -19,6 +19,7 @@ module Network.Socket.Linux.Types (
                 ,ETH_P_CONTROL,ETH_P_IRDA,ETH_P_ECONET,ETH_P_HDLC,ETH_P_ARCNET
                 ,ETH_P_DSA,ETH_P_TRAILER,ETH_P_PHONET,ETH_P_IEEE802154)
     , isSupportedProtocolId
+    , toProtocolNumber
 
     -- * PacketType
     , PacketType(GeneralPacketType, UnsupportedPacketType
@@ -44,7 +45,7 @@ import Foreign.Ptr
 import Foreign.C.Types
 import Foreign.Storable
 import Network.Socket.ReadShow
-import Network.Socket (Family, packFamily, unpackFamily)
+import Network.Socket (Family, packFamily, unpackFamily, ProtocolNumber)
 import Network.Socket.Address (SocketAddress, peekSocketAddress, pokeSocketAddress, sizeOfSocketAddress)
 import Text.Read (readPrec)
 
@@ -83,6 +84,11 @@ pattern GeneralProtocolId n = ProtocolId n
 unpackProtocolId :: CUShort -> ProtocolId
 unpackProtocolId = ProtocolId
 {-# INLINE unpackProtocolId #-}
+
+-- | Convert 'ProtocolId' to network byte order, for use with
+-- 'Network.Socket.socket'
+toProtocolNumber :: ProtocolId -> ProtocolNumber
+toProtocolNumber = fromIntegral . htons . fromIntegral . packProtocolId
 
 -- | Unsupported protocol id, equal to any other protocol ids that are not
 -- supported on the system.
