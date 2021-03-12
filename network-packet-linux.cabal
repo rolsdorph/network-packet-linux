@@ -22,7 +22,7 @@ library
   exposed-modules:     Network.Socket.Linux
   other-modules:       Network.Socket.Linux.Types
   other-extensions:    PatternSynonyms
-  build-depends:       base ^>=4.13.0.0, network, vendored-network
+  build-depends:       base ^>=4.13.0.0, network^>=3.1.0, vendored-network
   include-dirs:        include
   includes:            PacketLinuxConfig.h
   build-tool-depends:  hsc2hs:hsc2hs
@@ -41,7 +41,7 @@ test-suite socketspec
     base,
     bytestring,
     HUnit,
-    network,
+    network^>=3.1.0,
     vendored-network-test,
     network-packet-linux,
     hspec,
@@ -58,7 +58,7 @@ test-suite typespec
     base,
     bytestring,
     HUnit,
-    network,
+    network^>=3.1.0,
     vendored-network-test,
     network-packet-linux,
     hspec,
