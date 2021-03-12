@@ -1,7 +1,21 @@
 cabal-version:       2.4
 name:                network-packet-linux
 version:             0.1.0.0
-build-type:          Configure
+synopsis:            Types for working with Linux packet sockets
+description:
+    @network-packet-linux@ provides types that makes it possible to use the
+    @network@ package with Linux packet sockets. Packet sockets are described
+    in [packet (7)](https://man7.org/linux/man-pages/man7/packet.7.html).
+
+    As of version 3.0.0, the @network@ package provides a socket API that is
+    implemented in terms of the @SocketAddress@ typeclass.
+    @network-packet-linux@ provides @SockAddrLl@, a @SocketAddress@ instance
+    that maps to the @sockaddr_ll@ struct.
+
+    Additionally, @network-packet-linux@ provides some convenience types:
+    @ProtocolId@ (an enumeration of the Ethernet protocol IDs defined in
+    @<linux/if_ether.h>@) and @PacketType@ (enumerating the packet types
+    defined in @<linux/if_packet.h>@).
 license:             BSD-3-Clause
 license-file:        LICENSE
 maintainer:          Mads Rolsdorph
@@ -9,6 +23,7 @@ stability:           alpha
 homepage:            https://github.com/rolsdorph/network-packet-linux
 bug-reports:         https://github.com/rolsdorph/network-packet-linux/issues
 category:            Network
+build-type:          Configure
 extra-source-files:  cabal.project
                      configure config.status configure.ac
                      include/LinuxDef.h include/PacketLinuxConfig.h.in
