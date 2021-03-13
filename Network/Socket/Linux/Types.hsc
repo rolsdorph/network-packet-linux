@@ -715,7 +715,7 @@ data SockAddrLl = SockAddrLl { sllFamily :: Family
                              , sllIfIndex :: SllIfIndex
                              , sllHaType :: SllHaType
                              , sllPktType :: PacketType -- ^ Get the type of a received packet
-                             , physicalAddress :: PhysicalAddress -- ^ Get the 'PhysicalAddress' corresponding to the the @sll_halen@ and @sll_addr@ fields
+                             , physicalAddress :: PhysicalAddress -- ^ Get the 'PhysicalAddress' corresponding to the the @sll_halen@ and @sll_addr@ fields of a @sockaddr_ll@
                              }
 
 -- | Create a SockAddrLl for binding a packet socket to an interface.
