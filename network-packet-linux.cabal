@@ -50,7 +50,9 @@ library
   exposed-modules:     Network.Socket.Linux
   other-modules:       Network.Socket.Linux.Types
   other-extensions:    PatternSynonyms
-  build-depends:       base ^>=4.13.0.0, network^>=3.1.0, vendored-network
+  build-depends:       base >= 4.12 && < 5,
+                       network^>=3.1.0,
+                       vendored-network
   include-dirs:        include
   includes:            PacketLinuxConfig.h
   build-tool-depends:  hsc2hs:hsc2hs
@@ -60,7 +62,10 @@ test-suite listen-example
   hs-source-dirs:      examples
   main-is:             ListenToInterface.hs
   type:                exitcode-stdio-1.0
-  build-depends:       base, bytestring, network, network-packet-linux
+  build-depends:       base,
+                       bytestring,
+                       network,
+                       network-packet-linux
   default-language:    Haskell2010
 
 -- These tests require CAP_NET_RAW and must therefore run as root, hence
@@ -76,11 +81,11 @@ test-suite socketspec
     base,
     bytestring,
     HUnit,
-    network^>=3.1.0,
-    vendored-network-test,
-    network-packet-linux,
     hspec,
-    QuickCheck
+    QuickCheck,
+    network,
+    vendored-network-test,
+    network-packet-linux
   default-language:    Haskell2010
 
 test-suite typespec
@@ -94,9 +99,9 @@ test-suite typespec
     base,
     bytestring,
     HUnit,
-    network^>=3.1.0,
-    vendored-network-test,
-    network-packet-linux,
     hspec,
-    QuickCheck
+    QuickCheck,
+    network,
+    vendored-network-test,
+    network-packet-linux
   default-language:    Haskell2010
