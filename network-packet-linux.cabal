@@ -24,6 +24,11 @@ description:
     'ProtocolId' (an enumeration of the Ethernet protocol IDs defined in
     @\<linux/if_ether.h\>@) and 'PacketType' (enumerating the packet types
     defined in @\<linux/if_packet.h\>@).
+    .
+    __Hackage note__: The false dependency on `vendored-network` is an annoying
+    side effect of the way we pull in `network` files. Ideally the dependency
+    on `network` files should be an internal cabal library, but internal
+    libraries aren't supported for the build style we need.
 license:             BSD-3-Clause
 license-file:        LICENSE
 maintainer:          Mads Rolsdorph
@@ -52,6 +57,9 @@ library
   other-extensions:    PatternSynonyms
   build-depends:       base >= 4.12 && < 5,
                        network^>=3.1.0,
+                       -- vendored-network should ideally be an internal library so that it doesn't
+                       -- show up as a dependency in Hackage. Unfrtunately, internal libraries
+                       -- aren't currently supported for build-type: Configure
                        vendored-network
   include-dirs:        include
   includes:            PacketLinuxConfig.h
