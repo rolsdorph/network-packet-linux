@@ -34,7 +34,9 @@ The code in the first version of `network-packet-linux` was initially written as
 This package therefore looks a lot like its parent - code style, build setup and tests look very much like in `network`. The repo even contains [network](https://github.com/haskell/network/) as a git submodule, in order to re-use some of its code.
 
 ## Building
-`autoreconf -i`, `cabal configure` and then `cabal build`
+If you didn't include the submodules when cloning the repository, run `git submodule init` and `git submodule update` to fetch the necessary files from `network`.
+
+Then, to build: `autoreconf -i`, `cabal configure` and finally `cabal build`
 
 ## Tests
 There are two test suites, residing in the `test-socket` and `test-types` directories. The latter is for "normal" (purely functional) tests.
