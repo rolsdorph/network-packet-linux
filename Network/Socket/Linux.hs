@@ -37,6 +37,7 @@ module Network.Socket.Linux (
     , physicalAddress
     , mkBindSockAddrLl
     , mkSendSockAddrLl
+    , IfIndex
     , PhysicalAddress
     , PhysicalAddressBytes
     , addressLength

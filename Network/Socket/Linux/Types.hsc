@@ -9,6 +9,7 @@ module Network.Socket.Linux.Types (
     , physicalAddress
     , mkBindSockAddrLl
     , mkSendSockAddrLl
+    , IfIndex
     , PhysicalAddress
     , PhysicalAddressBytes
     , addressLength
@@ -718,8 +719,11 @@ data SockAddrLl = SockAddrLl { sllFamily :: Family
                              , physicalAddress :: PhysicalAddress -- ^ Get the 'PhysicalAddress' corresponding to the the @sll_halen@ and @sll_addr@ fields of a @sockaddr_ll@
                              }
 
+-- | The index of a network interface
+type IfIndex = Int
+
 -- | Create a SockAddrLl for binding a packet socket to an interface.
-mkBindSockAddrLl :: Family -> ProtocolId -> Int -> SockAddrLl
+mkBindSockAddrLl :: Family -> ProtocolId -> IfIndex -> SockAddrLl
 mkBindSockAddrLl family protocol index =
     SockAddrLl { sllFamily = family
                , sllProtocol = protocol
@@ -729,7 +733,7 @@ mkBindSockAddrLl family protocol index =
                , physicalAddress = emptyAddress }
 
 -- | Create a SockAddrLl for sending data to a specific address.
-mkSendSockAddrLl :: Family -> ProtocolId -> Int -> PhysicalAddress -> SockAddrLl
+mkSendSockAddrLl :: Family -> ProtocolId -> IfIndex -> PhysicalAddress -> SockAddrLl
 mkSendSockAddrLl family protocol index addr =
     SockAddrLl { sllFamily = family
                , sllProtocol = protocol
