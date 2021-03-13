@@ -31,6 +31,7 @@ description:
     libraries aren't supported for the build style we need.
 license:             BSD-3-Clause
 license-file:        LICENSE
+author:              Mads Rolsdorph
 maintainer:          Mads Rolsdorph
 stability:           alpha
 homepage:            https://github.com/rolsdorph/network-packet-linux
