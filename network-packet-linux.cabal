@@ -33,6 +33,10 @@ extra-source-files:  cabal.project
                      vendored-network/Setup.hs vendored-network/vendored-network.cabal
                      vendored-network-test/Setup.hs vendored-network-test/vendored-network-test.cabal
 
+source-repository head
+  type: git
+  location: git@github.com:rolsdorph/network-packet-linux.git
+
 library
   exposed-modules:     Network.Socket.Linux
   other-modules:       Network.Socket.Linux.Types
@@ -61,6 +65,7 @@ test-suite socketspec
     network-packet-linux,
     hspec,
     QuickCheck
+  default-language:    Haskell2010
 
 test-suite typespec
   hs-source-dirs: test-types
@@ -78,3 +83,4 @@ test-suite typespec
     network-packet-linux,
     hspec,
     QuickCheck
+  default-language:    Haskell2010
