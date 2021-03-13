@@ -48,6 +48,13 @@ library
   build-tool-depends:  hsc2hs:hsc2hs
   default-language:    Haskell2010
 
+test-suite listen-example
+  hs-source-dirs:      examples
+  main-is:             ListenToInterface.hs
+  type:                exitcode-stdio-1.0
+  build-depends:       base, bytestring, network, network-packet-linux
+  default-language:    Haskell2010
+
 -- These tests require CAP_NET_RAW and must therefore run as root, hence
 -- the separate test-suite
 test-suite socketspec
