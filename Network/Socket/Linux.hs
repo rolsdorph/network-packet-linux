@@ -25,6 +25,7 @@ module Network.Socket.Linux (
 
     -- * sockaddr_ll type
     , SockAddrLl
+    , sllPktType
     , physicalAddress
     , mkBindSockAddrLl
     , mkSendSockAddrLl

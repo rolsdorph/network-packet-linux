@@ -29,6 +29,7 @@ module Network.Socket.Linux.Types (
 
     -- * sockaddr_ll type
     , SockAddrLl
+    , sllPktType
     , physicalAddress
     , mkBindSockAddrLl
     , mkSendSockAddrLl
@@ -713,7 +714,7 @@ data SockAddrLl = SockAddrLl { sllFamily :: Family
                              , sllProtocol :: ProtocolId
                              , sllIfIndex :: SllIfIndex
                              , sllHaType :: SllHaType
-                             , sllPktType :: PacketType
+                             , sllPktType :: PacketType -- ^ Get the type of a received packet
                              , physicalAddress :: PhysicalAddress -- ^ Get the 'PhysicalAddress' corresponding to the the @sll_halen@ and @sll_addr@ fields
                              }
 
