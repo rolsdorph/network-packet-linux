@@ -3,8 +3,21 @@
 #include "LinuxDef.h"
 
 module Network.Socket.Linux.Types (
+    -- * sockaddr_ll type
+    SockAddrLl
+    , sllPktType
+    , physicalAddress
+    , mkBindSockAddrLl
+    , mkSendSockAddrLl
+    , PhysicalAddress
+    , PhysicalAddressBytes
+    , addressLength
+    , address
+    , mkPhysicalAddress
+    , macAddress
+
     -- * ProtocolId
-    ProtocolId(GeneralProtocolId, UnsupportedProtocolId
+    , ProtocolId(GeneralProtocolId, UnsupportedProtocolId
                 ,ETH_P_LOOP,ETH_P_PUP,ETH_P_PUPAT,ETH_P_IP,ETH_P_X25,ETH_P_ARP
                 ,ETH_P_BPQ,ETH_P_IEEEPUP,ETH_P_IEEEPUPAT,ETH_P_DEC,ETH_P_DNA_DL
                 ,ETH_P_DNA_RC,ETH_P_DNA_RT,ETH_P_LAT,ETH_P_DIAG,ETH_P_CUST
@@ -26,19 +39,6 @@ module Network.Socket.Linux.Types (
                 ,PACKET_HOST,PACKET_BROADCAST,PACKET_MULTICAST,PACKET_OTHERHOST
                 ,PACKET_OUTGOING)
     , isSupportedPacketType
-
-    -- * sockaddr_ll type
-    , SockAddrLl
-    , sllPktType
-    , physicalAddress
-    , mkBindSockAddrLl
-    , mkSendSockAddrLl
-    , PhysicalAddress
-    , PhysicalAddressBytes
-    , addressLength
-    , address
-    , mkPhysicalAddress
-    , macAddress
     ) where
 
 import Data.Word
@@ -605,7 +605,7 @@ newtype PacketType = PacketType { packPacketType :: CUChar } deriving (Eq, Ord)
 -- | Does one of the @PACKET_@ constants correspond to a known packet type
 -- on this system?
 --
--- Like 'Network.Socket.isSupportedFamily', 'GeneralPacketType' values
+-- Like for 'Network.Socket.isSupportedFamily', 'GeneralPacketType' values
 -- not equal to any of the named @PACKET_@ patterns or 'UnsupportedPacketType'
 -- will return 'True' even when not known on this system.
 isSupportedPacketType :: PacketType -> Bool
