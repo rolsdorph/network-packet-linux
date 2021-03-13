@@ -34,7 +34,7 @@ category:            Network
 build-type:          Configure
 extra-source-files:  cabal.project
                      CHANGELOG.md
-                     configure config.status configure.ac
+                     configure configure.ac
                      include/LinuxDef.h include/PacketLinuxConfig.h.in
                      vendor/network/Network/Socket/ReadShow.hs
                      vendor/network/tests/Network/Test/Common.hs
