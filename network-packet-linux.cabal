@@ -42,7 +42,7 @@ extra-source-files:  cabal.project
                      CHANGELOG.md
                      configure configure.ac
                      include/LinuxDef.h include/PacketLinuxConfig.h.in
-                     setup_unixtest_interface.sh teardown_unixtest_interface.sh
+                     run_socketspec_namespaced.sh socketspec.sh setup_unixtest_interface.sh teardown_unixtest_interface.sh
                      vendor/network/Network/Socket/ReadShow.hs
                      vendor/network/tests/Network/Test/Common.hs
                      vendor/network/LICENSE

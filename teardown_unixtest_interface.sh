@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo ip link delete haskellnetwork
+ip link delete haskellnetwork
