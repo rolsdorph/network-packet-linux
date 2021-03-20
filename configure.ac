@@ -1,5 +1,5 @@
 AC_INIT([Haskell network-packet-linux package],
-        [0.1.0.0])
+        [0.1.1.0])
 
 AC_CONFIG_SRCDIR([Network/Socket/Linux/Types.hsc])
 

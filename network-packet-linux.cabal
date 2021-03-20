@@ -1,6 +1,6 @@
 cabal-version:       2.4
 name:                network-packet-linux
-version:             0.1.0.0
+version:             0.1.1.0
 synopsis:            Types for working with Linux packet sockets
 description:
     @network-packet-linux@ makes it possible to use
