@@ -31,12 +31,10 @@ main = do
 
 ## About this package
 The code in the first version of `network-packet-linux` was initially written as part of the `network` package, and later extracted to a separate package. This separation was done because `network` aims to mostly contain cross-platform functionality. 
-This package therefore looks a lot like its parent - code style, build setup and tests look very much like in `network`. The repo even contains [network](https://github.com/haskell/network/) as a git submodule, in order to re-use some of its code.
+This package therefore looks a lot like its parent - code style, build setup and tests look very much like in `network`. The repo even contains [some helper modules copied directly from the upstream repo](vendor/network).
 
 ## Building
-If you didn't include the submodules when cloning the repository, run `git submodule init` and `git submodule update` to fetch the necessary files from `network`.
-
-Then, to build: `autoreconf -i`, `cabal configure` and finally `cabal build`
+Same as for our "parent" package: `autoreconf -i`, `cabal configure` and finally `cabal build`
 
 ## Tests
 There are two test suites, residing in the `test-socket` and `test-types` directories. The latter is for "normal" (purely functional) tests.

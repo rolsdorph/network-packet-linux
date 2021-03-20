@@ -24,11 +24,6 @@ description:
     'ProtocolId' (an enumeration of the Ethernet protocol IDs defined in
     @\<linux/if_ether.h\>@) and 'PacketType' (enumerating the packet types
     defined in @\<linux/if_packet.h\>@).
-    .
-    __Hackage note__: The false dependency on `vendored-network` is an annoying
-    side effect of the way we pull in `network` files. Ideally the dependency
-    on `network` files should be an internal cabal library, but internal
-    libraries aren't supported for the build style we need.
 license:             BSD-3-Clause
 license-file:        LICENSE
 author:              Mads Rolsdorph
@@ -46,23 +41,19 @@ extra-source-files:  cabal.project
                      vendor/network/Network/Socket/ReadShow.hs
                      vendor/network/tests/Network/Test/Common.hs
                      vendor/network/LICENSE
-                     vendored-network/Setup.hs vendored-network/vendored-network.cabal
-                     vendored-network-test/Setup.hs vendored-network-test/vendored-network-test.cabal
+                     vendor/network/README
 
 source-repository head
   type: git
   location: git@github.com:rolsdorph/network-packet-linux.git
 
 library
+  hs-source-dirs:      . vendor/network
   exposed-modules:     Network.Socket.Linux
-  other-modules:       Network.Socket.Linux.Types
+  other-modules:       Network.Socket.Linux.Types Network.Socket.ReadShow
   other-extensions:    PatternSynonyms
   build-depends:       base >= 4.12 && < 5,
                        network^>=3.1.0,
-                       -- vendored-network should ideally be an internal library so that it doesn't
-                       -- show up as a dependency in Hackage. Unfrtunately, internal libraries
-                       -- aren't currently supported for build-type: Configure
-                       vendored-network
   include-dirs:        include
   includes:            PacketLinuxConfig.h
   build-tool-depends:  hsc2hs:hsc2hs
@@ -81,20 +72,20 @@ test-suite listen-example
 -- These tests require CAP_NET_RAW and must therefore run as root, hence
 -- the separate test-suite
 test-suite socketspec
-  hs-source-dirs: test-socket
+  hs-source-dirs: test-socket vendor/network/tests
   main-is: Spec.hs
-  other-modules: Network.Socket.Linux.LinuxSpec
+  other-modules: Network.Socket.Linux.LinuxSpec Network.Test.Common
   type: exitcode-stdio-1.0
   ghc-options: -Wall
   build-tool-depends: hspec-discover:hspec-discover
   build-depends:
     base,
     bytestring,
+    directory,
     HUnit,
     hspec,
     QuickCheck,
     network,
-    vendored-network-test,
     network-packet-linux
   default-language:    Haskell2010
 
@@ -112,6 +103,5 @@ test-suite typespec
     hspec,
     QuickCheck,
     network,
-    vendored-network-test,
     network-packet-linux
   default-language:    Haskell2010

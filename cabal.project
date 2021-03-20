@@ -1,1 +1,1 @@
-packages: ./*.cabal, ./vendored-network*/*.cabal
+packages: ./*.cabal
